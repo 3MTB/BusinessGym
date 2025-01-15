@@ -1,0 +1,115 @@
+@if (role) {
+  <div class="bg-white text-black min-h-screen flex">
+    <!-- Menú lateral -->
+    <aside class="bg-gray-100 text-black w-72 flex flex-col">
+      <div class="p-6 text-center">
+        <h1 class="text-4xl font-extrabold text-black">GYM PRO</h1>
+        <p class="text-gray-600 text-sm">Energía y Movimiento</p>
+        {{role}}
+      </div>
+      <nav class="flex-1">
+        <ul class="space-y-4">
+          <li>
+            <a href="#inicio" onclick="showSection('inicio')"
+               class="block px-6 py-3 hover:bg-gray-300 rounded-md text-lg font-semibold">
+              <i class="bi bi-house-door"></i> Inicio
+            </a>
+          </li>
+          <li>
+            <a href="#membresias" onclick="showSection('membresias')"
+               class="block px-6 py-3 hover:bg-gray-300 rounded-md text-lg font-semibold">
+              <i class="bi bi-card-list"></i> Membresías
+            </a>
+          </li>
+          <li>
+            <a href="#usuarios" onclick="showSection('usuarios')"
+               class="block px-6 py-3 hover:bg-gray-300 rounded-md text-lg font-semibold">
+              <i class="bi bi-people"></i> Usuarios
+            </a>
+          </li>
+          <li>
+            <a href="#reportes" onclick="showSection('reportes')"
+               class="block px-6 py-3 hover:bg-gray-300 rounded-md text-lg font-semibold">
+              <i class="bi bi-bar-chart"></i> Reportes
+            </a>
+          </li>
+          <li>
+            <a href="#configuracion" onclick="showSection('configuracion')"
+               class="block px-6 py-3 hover:bg-gray-300 rounded-md text-lg font-semibold">
+              <i class="bi bi-gear"></i> Configuración
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <div class="p-6">
+        <button (click)="CerrarSeccion()" class="w-full bg-gray-900 text-white py-3 rounded-md hover:bg-gray-700 text-lg font-semibold">
+          Cerrar Sesión
+        </button>
+      </div>
+    </aside>
+
+    <!-- Contenido principal -->
+    <main class="flex-1 flex flex-col">
+      <!-- Barra superior -->
+      <header class="bg-gray-200 shadow p-6 flex justify-between items-center">
+        <h2 class="text-3xl font-bold text-gray-800">Panel de Control</h2>
+        <div class="flex items-center space-x-4">
+          <input
+            type="text"
+            placeholder="Buscar..."
+            class="border border-gray-400 bg-gray-100 text-black rounded px-4 py-2 focus:outline-none focus:ring focus:ring-gray-300"
+          />
+          <button class="bg-black text-white px-6 py-3 rounded-md hover:bg-gray-700 text-lg font-semibold">
+            <i class="bi bi-bell"></i> Notificaciones
+          </button>
+        </div>
+      </header>
+
+      <!-- Secciones dinámicas -->
+      <section id="inicio" class="w-auto">
+
+        <router-outlet></router-outlet>
+      </section>
+
+      <section id="membresias" class="flex-1 p-8 hidden">
+        <div class="bg-gray-100 p-6 rounded-lg shadow-lg">
+          <h3 class="text-4xl font-bold text-black">Planes de Membresía</h3>
+          <ul class="mt-4 space-y-2">
+            <li class="text-lg">Plan Básico: Acceso a máquinas y pesas - $20/mes</li>
+            <li class="text-lg">Plan Premium: Clases incluidas - $35/mes</li>
+            <li class="text-lg">Plan VIP: Acceso 24/7 y entrenador personal - $50/mes</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="usuarios" class="flex-1 p-8 hidden">
+        <div class="bg-gray-100 p-6 rounded-lg shadow-lg">
+          <h3 class="text-4xl font-bold text-black">Lista de Usuarios</h3>
+          <ul class="mt-4 space-y-2">
+            <li class="text-lg">Juan Pérez - Plan Premium</li>
+            <li class="text-lg">María López - Plan Básico</li>
+            <li class="text-lg">Carlos Sánchez - Plan VIP</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="reportes" class="flex-1 p-8 hidden">
+        <div class="bg-gray-100 p-6 rounded-lg shadow-lg">
+          <h3 class="text-4xl font-bold text-black">Reportes</h3>
+          <p class="mt-4 text-gray-800 text-lg">Reporte de ingresos mensuales: $5,000</p>
+          <p class="text-gray-800 text-lg">Usuarios activos: 150</p>
+          <p class="text-gray-800 text-lg">Clases realizadas este mes: 45</p>
+        </div>
+      </section>
+
+      <section id="configuracion" class="flex-1 p-8 hidden">
+        <div class="bg-gray-100 p-6 rounded-lg shadow-lg">
+          <h3 class="text-4xl font-bold text-black">Configuración</h3>
+          <p class="mt-4 text-gray-800 text-lg">Configura las opciones del sistema según tus necesidades.</p>
+        </div>
+      </section>
+    </main>
+  </div>
+} @else {
+  <router-outlet/>
+}
