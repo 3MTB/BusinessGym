@@ -1,115 +1,46 @@
-@if (role) {
-  <div class="bg-white text-black min-h-screen flex">
-    <!-- Menú lateral -->
-    <aside class="bg-gray-100 text-black w-72 flex flex-col">
-      <div class="p-6 text-center">
-        <h1 class="text-4xl font-extrabold text-black">GYM PRO</h1>
-        <p class="text-gray-600 text-sm">Energía y Movimiento</p>
-        {{role}}
-      </div>
-      <nav class="flex-1">
-        <ul class="space-y-4">
-          <li>
-            <a href="#inicio" onclick="showSection('inicio')"
-               class="block px-6 py-3 hover:bg-gray-300 rounded-md text-lg font-semibold">
-              <i class="bi bi-house-door"></i> Inicio
-            </a>
-          </li>
-          <li>
-            <a href="#membresias" onclick="showSection('membresias')"
-               class="block px-6 py-3 hover:bg-gray-300 rounded-md text-lg font-semibold">
-              <i class="bi bi-card-list"></i> Membresías
-            </a>
-          </li>
-          <li>
-            <a href="#usuarios" onclick="showSection('usuarios')"
-               class="block px-6 py-3 hover:bg-gray-300 rounded-md text-lg font-semibold">
-              <i class="bi bi-people"></i> Usuarios
-            </a>
-          </li>
-          <li>
-            <a href="#reportes" onclick="showSection('reportes')"
-               class="block px-6 py-3 hover:bg-gray-300 rounded-md text-lg font-semibold">
-              <i class="bi bi-bar-chart"></i> Reportes
-            </a>
-          </li>
-          <li>
-            <a href="#configuracion" onclick="showSection('configuracion')"
-               class="block px-6 py-3 hover:bg-gray-300 rounded-md text-lg font-semibold">
-              <i class="bi bi-gear"></i> Configuración
-            </a>
-          </li>
-        </ul>
-      </nav>
-      <div class="p-6">
-        <button (click)="CerrarSeccion()" class="w-full bg-gray-900 text-white py-3 rounded-md hover:bg-gray-700 text-lg font-semibold">
-          Cerrar Sesión
-        </button>
-      </div>
-    </aside>
-
-    <!-- Contenido principal -->
-    <main class="flex-1 flex flex-col">
-      <!-- Barra superior -->
-      <header class="bg-gray-200 shadow p-6 flex justify-between items-center">
-        <h2 class="text-3xl font-bold text-gray-800">Panel de Control</h2>
-        <div class="flex items-center space-x-4">
-          <input
-            type="text"
-            placeholder="Buscar..."
-            class="border border-gray-400 bg-gray-100 text-black rounded px-4 py-2 focus:outline-none focus:ring focus:ring-gray-300"
-          />
-          <button class="bg-black text-white px-6 py-3 rounded-md hover:bg-gray-700 text-lg font-semibold">
-            <i class="bi bi-bell"></i> Notificaciones
-          </button>
-        </div>
-      </header>
-
-      <!-- Secciones dinámicas -->
-      <section id="inicio" class="w-auto">
-
-        <router-outlet></router-outlet>
-      </section>
-
-      <section id="membresias" class="flex-1 p-8 hidden">
-        <div class="bg-gray-100 p-6 rounded-lg shadow-lg">
-          <h3 class="text-4xl font-bold text-black">Planes de Membresía</h3>
-          <ul class="mt-4 space-y-2">
-            <li class="text-lg">Plan Básico: Acceso a máquinas y pesas - $20/mes</li>
-            <li class="text-lg">Plan Premium: Clases incluidas - $35/mes</li>
-            <li class="text-lg">Plan VIP: Acceso 24/7 y entrenador personal - $50/mes</li>
-          </ul>
-        </div>
-      </section>
-
-      <section id="usuarios" class="flex-1 p-8 hidden">
-        <div class="bg-gray-100 p-6 rounded-lg shadow-lg">
-          <h3 class="text-4xl font-bold text-black">Lista de Usuarios</h3>
-          <ul class="mt-4 space-y-2">
-            <li class="text-lg">Juan Pérez - Plan Premium</li>
-            <li class="text-lg">María López - Plan Básico</li>
-            <li class="text-lg">Carlos Sánchez - Plan VIP</li>
-          </ul>
-        </div>
-      </section>
-
-      <section id="reportes" class="flex-1 p-8 hidden">
-        <div class="bg-gray-100 p-6 rounded-lg shadow-lg">
-          <h3 class="text-4xl font-bold text-black">Reportes</h3>
-          <p class="mt-4 text-gray-800 text-lg">Reporte de ingresos mensuales: $5,000</p>
-          <p class="text-gray-800 text-lg">Usuarios activos: 150</p>
-          <p class="text-gray-800 text-lg">Clases realizadas este mes: 45</p>
-        </div>
-      </section>
-
-      <section id="configuracion" class="flex-1 p-8 hidden">
-        <div class="bg-gray-100 p-6 rounded-lg shadow-lg">
-          <h3 class="text-4xl font-bold text-black">Configuración</h3>
-          <p class="mt-4 text-gray-800 text-lg">Configura las opciones del sistema según tus necesidades.</p>
-        </div>
-      </section>
-    </main>
+<nav class="bg-white dark:bg-gray-900 fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600">
+  <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+    <a [routerLink]="RutasPaginas.Home" class="flex items-center space-x-3 rtl:space-x-reverse">
+      <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Gym Pro</span>
+    </a>
+    <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+      <button type="button"
+              (click)="btnLogin()"
+              class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+        {{ (role !== null ? "Cerrar seccion" : "Iniciar seccion") }}
+      </button>
+      <button data-collapse-toggle="navbar-sticky" type="button"
+              class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+              aria-controls="navbar-sticky" aria-expanded="false">
+        <span class="sr-only">Open main menu</span>
+        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M1 1h15M1 7h15M1 13h15"/>
+        </svg>
+      </button>
+    </div>
+    <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
+      <ul
+        class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+        <li>
+          <a [routerLink]="RutasPaginas.Home"
+             class="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500"
+             aria-current="page">Inicio</a>
+        </li>
+        <li>
+          <a [routerLink]="RutasPaginas.Membresias"
+             class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Membresias</a>
+        </li>
+        <li>
+          <a [routerLink]="RutasPaginas.clientes"
+             class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Clientes</a>
+        </li>
+        <li>
+          <a [routerLink]="RutasPaginas.Reportes"
+             class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Reportes</a>
+        </li>
+      </ul>
+    </div>
   </div>
-} @else {
-  <router-outlet/>
-}
+  <router-outlet></router-outlet>
+</nav>

@@ -13,8 +13,22 @@ export const RutasPaginas = {
   AccesoDenegado : 'accesoDenegado',
   Admin: '/admin',
   Cliente: '/cliente',
+  Membresias : '/membresias',
+  clientes: '/admin/clientes',
+  Reportes: '/admin/reportes',
+  NoEncontrado: "paginaNoEncontrada",
+
+
+}
+export const RutasRouting = {
+  RouteHome: '',
+
   RouteAdmin: 'admin',
   RouteCliente: 'cliente',
+  RouteClientes : 'clientes',
+  RouteReportes : 'reportes',
+  RouteMembresias : 'membresias',
+
 }
 
 
