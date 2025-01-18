@@ -1,28 +1,47 @@
 import {Component, OnInit} from '@angular/core';
 import {SupabaseServicio} from '../../Servicios/SupabaseServicio';
 import {Membresia} from 'Interfaces/Interfaces';
+import {SupaReal} from 'Servicios/SupaReal';
+import {JsonPipe} from '@angular/common';
 
 
 @Component({
   selector: 'app-membresias',
-  imports: [],
+  imports: [JsonPipe],
   templateUrl: './membresias.component.html',
   styleUrl: './membresias.component.css'
 })
 export class MembresiasComponent implements OnInit {
   membresias: Membresia[] = [];
 
-  constructor(private supabaseServ: SupabaseServicio) {
+  message : any;
+
+  constructor(private supabaseServ: SupabaseServicio, private real: SupaReal) {
   }
 
-  async ngOnInit() {
-    const result = await this.supabaseServ.ObtenerMembresias();
-    console.log(result);
-    if (result.error === null) {
-      this.membresias = result.membresias ?? [];
-    }
+  ngOnInit() {
+    const supa = this.real.getSupabase();
+
+
+    supa.channel('custom-all-channel')
+      .on(
+        'postgres_changes',
+        {event: '*', schema: 'public', table: 'Clientes'},
+        (payload) => {
+          this.message = payload;
+          console.log('Change received!', payload)
+        }
+      )
+      .subscribe()
   }
 
+  // async ngOnInit() {
+  //   const result = await this.supabaseServ.ObtenerMembresias();
+  //   console.log(result);
+  //   if (result.error === null) {
+  //     this.membresias = result.membresias ?? [];
+  //   }
+  // }
 
 
   ObtenerTiempoMembresia(membresia: Membresia) {

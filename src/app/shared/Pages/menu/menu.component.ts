@@ -15,6 +15,7 @@ import {AuthPaths, RutasPaginas} from 'Constants/ConstantRutas';
 export class MenuComponent implements OnInit {
   showMenu = false;
   role: string | null = null;
+  isMenuOpen = false;
 
   constructor(private authServicio: AuthService, private router: Router) {
   }
@@ -22,8 +23,12 @@ export class MenuComponent implements OnInit {
   async ngOnInit() {
     this.authServicio.userRole$.subscribe(role => {
       this.role = role;
-    //  this.ManejadorRutas();
+      //  this.ManejadorRutas();
     })
+  }
+
+  toggleMenu(): void {
+    this.isMenuOpen = !this.isMenuOpen;
   }
 
 
@@ -42,12 +47,12 @@ export class MenuComponent implements OnInit {
 
   async btnLogin() {
     // cerrar seccion
-    if(this.role !== null ) {
+    if (this.role !== null) {
       const result = await this.authServicio.signOut();
       if (result) {
         await this.router.navigate([AuthPaths.LogIn]);
       }
-    }else{
+    } else {
       // redirigir al login
       await this.router.navigate([AuthPaths.LogIn]);
     }
