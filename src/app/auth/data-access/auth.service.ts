@@ -49,6 +49,24 @@ export class AuthService {
     });
     console.log(resultado);
 
+    if (resultado.error == null && resultado.data != null) {
+
+      const {data, error} = await this._supabaseClient
+        .from('Clientes')
+        .insert([
+          {
+            Nombre: 'New name client',
+            Apellido: 'last name client',
+            Telefono: "999-666-7777",
+            userId: resultado.data.user?.id
+          },
+        ])
+        .select();
+      console.log("valor registrado",data);
+      console.warn("error al registrar",error);
+
+    }
+
     // if (resultado.error == null && resultado.data != null) {
     //   const createdUser: User = resultado.data.user!;
     //   console.log(createdUser);
