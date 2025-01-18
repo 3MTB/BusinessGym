@@ -6,6 +6,8 @@
     "outDir": "./dist/out-tsc",
     "paths": {
       "Constants/*" : ["./src/app/shared/Constants/*"],
+      "Interfaces/*": ["./src/app/shared/Modelos/*"],
+      "Servicios/*" : ["./src/app/Servicios/*"]
     },
     "strict": true,
     "noImplicitOverride": true,

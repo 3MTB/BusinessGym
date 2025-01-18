@@ -3,8 +3,6 @@ import {inject} from '@angular/core';
 import {AuthPaths, RutasPaginas} from 'Constants/ConstantRutas';
 import {AuthService} from '../auth/data-access/auth.service';
 
-
-// export  const  rolesAdministradorGuard(rolesPermitidos : string[]): CanActivateFn = (route, state) => {
 export function rolesGuard(rolesPermitidos: string[]): CanActivateFn {
   return (route, state): boolean => {
     const authService = inject(AuthService);
@@ -22,9 +20,10 @@ export function rolesGuard(rolesPermitidos: string[]): CanActivateFn {
     }
 
 
+
     seguir = rolesPermitidos.includes(role);
     if (!seguir) {
-      router.navigate([RutasPaginas.AccesoDenegado]).then(x => false);
+      router.navigate([RutasPaginas.AccesoDenegado]).then(x => true);
     }
     return seguir;
   }
