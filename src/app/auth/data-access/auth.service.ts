@@ -50,7 +50,7 @@ export class AuthService {
     console.log(resultado);
 
     if (resultado.error == null && resultado.data != null) {
-
+console.log("lets create the profile ");
       const {data, error} = await this._supabaseClient
         .from('Clientes')
         .insert([
@@ -58,10 +58,13 @@ export class AuthService {
             Nombre: 'New name client',
             Apellido: 'last name client',
             Telefono: "999-666-7777",
-            userId: resultado.data.user?.id
+            UserId: resultado.data.user?.id,
+            Direccion : "su casa xd"
           },
         ])
         .select();
+      console.log("profile done ");
+
       console.log("valor registrado",data);
       console.warn("error al registrar",error);
 

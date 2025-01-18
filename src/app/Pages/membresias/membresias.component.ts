@@ -28,8 +28,10 @@ export class MembresiasComponent implements OnInit {
         'postgres_changes',
         {event: '*', schema: 'public', table: 'Clientes'},
         (payload) => {
-          this.message = payload;
+          alert("change received")
           console.log('Change received!', payload)
+          this.message = payload;
+
         }
       )
       .subscribe()
